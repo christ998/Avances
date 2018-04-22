@@ -8,7 +8,7 @@ public class ObjetoEquipable {
   private String carac;
   private String nombre;
  
-  ObjetoEquipable(){
+  public ObjetoEquipable(){
   probabilidad();
   setMejoraBase();
   getMejoraBase();
@@ -18,6 +18,12 @@ public class ObjetoEquipable {
   getMejora();
   setNombreArma();
   getNombreArma();
+  }
+  public ObjetoEquipable(int rango){
+  setMejoraBase();
+  caracteristica();
+  setNombreArma();
+  setMejora(rango);
   }
   /*public static void main(String [] args){
   ArrayList <ObjetoEquipable> inventario = new ArrayList<>(15);    
@@ -105,6 +111,9 @@ public class ObjetoEquipable {
  
  public void setMejora(){
   this.mejora = this.base*this.rango;
+ }
+ public void setMejora(int rango){
+ this.mejora = this.base*rango;
  }
  
  public int getMejora(){

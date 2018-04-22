@@ -7,11 +7,12 @@ public class Monstruo {
   private int def;
   private int spd;
   private String faccion;
-  ArrayList <ObjetoEquipable> dropeos = new ArrayList<>();
+  private int probDrop;
+  ArrayList <ObjetoEquipable> dropeos = new ArrayList<>(3);
   
   public Monstruo(){
   crearMonstruo();
-  
+  crearObjetoDropeable();
   } // El constructor se encargará de crear los monstruos (objetos de la clase Monstruo) con sus respectivos atributos
   
  private void setHp(){
@@ -63,8 +64,25 @@ public String elegirFaccion(String[]faccion){
  public String getFaccion(){
  return this.faccion;
  }
- private void crearObjetoDropeable(ArrayList <ObjetoEquipable> array){
- array.add(new ObjetoEquipable());
+ private void crearObjetoDropeable(){
+ dropeos.add(0,new ObjetoEquipable(1));
+ dropeos.add(1,new ObjetoEquipable(3));
+ dropeos.add(2,new ObjetoEquipable(5));
+ }
+ public void ProbDrop(){
+  this.probDrop = (int)(Math.random()*100);
+  if(this.probDrop <= 60){
+  dropeos.remove(1);
+  dropeos.remove(2);
+  }
+  if(this.probDrop > 60 && this.probDrop <=90){
+  dropeos.remove(0);
+  dropeos.remove(2);
+  }
+  if(this.probDrop > 90){
+  dropeos.remove(0);
+  dropeos.remove(1);
+  }
  }
  public void mostrarObjetoDropeable(ArrayList <ObjetoEquipable> array){
      System.out.println("Nombre: "+array.get(0).getNombreArma());    
