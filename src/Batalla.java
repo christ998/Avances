@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+sgerge
 public class Batalla {
     private ArrayList<Luchador> peleadores = new ArrayList<>();
     private ArrayList<Monstruo> monstruos = new ArrayList<>();
