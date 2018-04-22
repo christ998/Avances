@@ -7,14 +7,11 @@ public class Batalla {
     
         
     public Batalla(){
-       
      asignarMonstruo();
-         
      asignarPeleadores();
+     ordenVelocidad();
      lanzarDado();
-     
      pelea();
-     
     }
    
     public void asignarPeleadores(){
@@ -22,21 +19,24 @@ public class Batalla {
      System.out.println("Eliga la cantidad de luchadores que van a la batalla "); 
      int cant = leer.nextInt();
        
-     InventarioLuchador.mostrarInventario();
+     System.out.println("Nombre"+"\t\t"+"Facción"+"\t\t"+"Rango");
+     System.out.println("---------------------------------------------");
+       for(int i=0; i < InventarioLuchador.inventario.size(); i++){
+        System.out.print(i+1);
+        InventarioLuchador.inventario.get(i).mostrarLuchador();
+       }
      System.out.println("Elija los "+cant+" luchadores (debe ingresar la posición)");
-     
+         
      for(int i=0; i < cant; i++){
-     int pos = leer.nextInt();    
+     int pos = leer.nextInt();
      peleadores.add(InventarioLuchador.inventario.get(pos-1));
-     
      System.out.println("Luchador listo para la batalla");
      }
      System.out.println("Luchadores listos");
     }
-    
     public void asignarMonstruo(){
-    Monstruo rival = new Monstruo();
-    monstruos.add(rival);
+    
+    monstruos.add(new Monstruo());
     }
     
     public void lanzarDado(){
@@ -62,54 +62,64 @@ public class Batalla {
       }  
      }
     } //Este método ordena el Array de peleadores que van a pelear segun sus velocidades, de mayor a menor
-    public int casoDado(int daño){
-     if(this.dif > 0){
-     daño = daño*this.dif;
-     }
-     if(this.dif < 0){
-     daño = daño*getDado();
-     }
-     return daño;     
-    }
-    
+       
     public void ataqueJugador(int i){
     double ataq = peleadores.get(i).getAtk();
-    /* if((peleadores.get(i).getFaccion().equals("Agua")&& monstruos.get(0).getFaccion().equals("Fuego"))|| (peleadores.get(i).getFaccion().equals("Fuego")) && monstruos.get(0).getFaccion().equals("Planta")){
+    double daño ;
+     if((peleadores.get(i).getFaccion().equals("Agua")&& monstruos.get(0).getFaccion().equals("Fuego"))|| (peleadores.get(i).getFaccion().equals("Fuego")) && monstruos.get(0).getFaccion().equals("Planta")){
       ataq = ataq*1.5;   
-     }
+     }else{
      if(peleadores.get(i).getFaccion().equals("Planta")&& monstruos.get(0).getFaccion().equals("Agua")){
      ataq = ataq*1.5;
-     }*/
+     }else{
+      ataq=ataq*0.75;
+      }
+     }
+                            
      if(this.dif > 0){
-     double daño = (ataq-monstruos.get(0).getDef())*getDado();
-     monstruos.get(0).disminuirVida(daño);
+     daño = (ataq-monstruos.get(0).getDef())*getDado();
+      if(daño < 0){
+       daño = 0;
+      }
+     }else{
+      daño = ataq-monstruos.get(0).getDef();
+        if(daño < 0){
+        daño = 0;
+        }
      }
-     if(this.dif == 0 || this.dif < 0){
-     double daño = ataq-monstruos.get(0).getDef();
-     monstruos.get(0).disminuirVida(daño); //El metodo disminuir vida esta en la clase Monstruo
-     }
-     }
+     monstruos.get(0).disminuirVida(daño);//El metodo disminuir vida esta en la clase Monstruo
+    }
+     
     
     public void ataqueMonstruo(int i){
     double ataq = monstruos.get(0).getAtk();
-     /*if((monstruos.get(0).getFaccion().equals("Agua")&& peleadores.get(i).getFaccion().equals("Fuego"))|| (monstruos.get(0).getFaccion().equals("Fuego")) && peleadores.get(i).getFaccion().equals("Planta")){
+    double daño;
+     if((monstruos.get(0).getFaccion().equals("Agua")&& peleadores.get(i).getFaccion().equals("Fuego"))|| (monstruos.get(0).getFaccion().equals("Fuego")) && peleadores.get(i).getFaccion().equals("Planta")){
       ataq = ataq*1.5;   
-     }
+     }else{
      if(monstruos.get(0).getFaccion().equals("Planta")&& peleadores.get(i).getFaccion().equals("Agua")){
      ataq = ataq*1.5;
-     }*/
+     }else{
+       ataq = ataq*0.75;  
+      }
+     }
+     
      if(this.dif < 0){
-     double daño = (ataq-peleadores.get(i).getDefensa())*getDado();
-     peleadores.get(i).disminuirVida(daño);
-     }
-     if(this.dif == 0 || this.dif > 0){
-     double daño = ataq-peleadores.get(i).getDefensa();
-     peleadores.get(i).disminuirVida(daño); //El metodo disminuir vida esta en la clase Luchador
-     }
+     daño = (ataq-peleadores.get(i).getDefensa())*getDado();
+        if(daño < 0){
+        daño = 0;
+        }
+     }else{
+     daño = ataq-peleadores.get(i).getDefensa();
+      if(daño < 0){
+       daño = 0;
+      }
+    }
+     peleadores.get(i).disminuirVida(daño);//El metodo disminuir vida esta en la clase Luchador
     }
     public void pelea(){
     
-      for(int i=0; i < peleadores.size(); i++){    
+      for(int i=0; i < peleadores.size(); i++){ //Este for sirve para que vayan peleando "en fila" los luchadores, si muere uno, sigue el siguiente del Array   
        do{
         ataqueJugador(i);
     
