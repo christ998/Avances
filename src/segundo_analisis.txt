@@ -1,0 +1,15 @@
+Observaciones
+
+En este segundo análisis, observamos que la clase batalla es dependiente de InventarioLuchador, Monstruo y Dado, éstas son indispensables 
+para recrear una batalla, la clase InventarioLuchador entrega peleadores, la clase monstruo será el rival y el dado dará la multiplicación
+del daño.
+
+La clase Luchador dependerá de InventarioObjeto cuando quisiera equipar un arma, de lo contrario no podría mejorar sus stats
+
+La clase Monstruo depende de objetoequipable para guardar en su Array los objetos dropeables
+
+La clase inventarioObjeto se asocia con Batalla, pues le pasa peleadores pero su funcionamiento no se ve estorbada por la clase Batalla
+
+La clase Monstruo se asocia con Batalla, será un personaje del juego importante, pero sus atributos y funciones no se ven afectadas 
+por la ausencia de Batalla
+
