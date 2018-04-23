@@ -132,21 +132,21 @@ public class Batalla {
       for(int i=0; i < peleadores.size(); i++){ //Este for sirve para que vayan peleando "en fila" los luchadores, si muere uno, sigue el siguiente del Array   
        do{
         ataqueJugador(i);
-    
         ataqueMonstruo(i);
-     
-       }while(peleadores.get(i).getVida()>0 && monstruos.get(0).getHp()>0);
+      }while(peleadores.get(i).getVida()>0 && monstruos.get(0).getHp()>0);
       if(monstruos.get(0).getHp()<=0){
         System.out.println("Murio el Monstruo");  
         System.out.println("HAS GANADO");
-        continue;
-        
+        break;
+                     
       }else{
         System.out.println("Murio tu luchador"); 
        }
       
       }
-      System.out.println("PERDISTE LA BATALLA :/");
+     if(peleadores.get(peleadores.size()-1).getVida() <= 0){
+         System.out.println("HAS PERDIDO LA BATALLA :/");
+     }
     } 
 }
     

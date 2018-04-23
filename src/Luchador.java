@@ -130,7 +130,7 @@ public class Luchador{
      return estrellas;
     }
     public void atk(){
-     this.atk = (int)(Math.random()*50+20);
+     this.atk = (int)(Math.random()*500+20);
     }
     public int getAtk(){
      return this.atk;
