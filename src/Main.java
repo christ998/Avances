@@ -9,6 +9,15 @@ public class Main {
       ej.agregarLuchador();
       ej.agregarLuchador();
       ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
+      ej.agregarLuchador();
       Batalla bat = new Batalla();          
       }
     

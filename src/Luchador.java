@@ -31,7 +31,8 @@ public class Luchador{
      String msj ="";
      msj= "\t"+this.nombre;
      msj+="\t\t"+this.faccion;
-     msj+="\t\t"+this.rango;       
+     msj+="\t\t"+this.rango;  
+     msj+="\t\t"+this.vel;     
      System.out.println(msj);
     }
     public String[] nombres(){
