@@ -9,7 +9,7 @@ public class Batalla {
     public Batalla(){
      asignarMonstruo();
      asignarPeleadores();
-     ordenVelocidad();  
+       
      mostrarPeleadores();
      pelea();
      
@@ -139,6 +139,7 @@ public class Batalla {
       if(monstruos.get(0).getHp()<=0){
         System.out.println("Murio el Monstruo");  
         System.out.println("HAS GANADO");
+        continue;
         
       }else{
         System.out.println("Murio tu luchador"); 
