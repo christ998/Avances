@@ -41,7 +41,7 @@ public class Luchador{
      peleadores[1]="Astryd";
      peleadores[2]="Vend";
      peleadores[3]="meshias";
-     peleadores[4]="lucifer";
+     peleadores[4]="Lucifer";
      peleadores[5]="Scorp";
      peleadores[6]="Jade";
      peleadores[7]="Rain";
@@ -49,7 +49,7 @@ public class Luchador{
      peleadores[10]="Raiden";
      peleadores[11]="SubZero";
      peleadores[12]="Jax";
-     peleadores[13]="yasuo";
+     peleadores[13]="Yasuo";
      peleadores[14]="Garen";
      return peleadores;
     }
@@ -130,7 +130,7 @@ public class Luchador{
      return estrellas;
     }
     public void atk(){
-     this.atk = (int)(Math.random()*500+20);
+     this.atk = (int)(Math.random()*50+20);
     }
     public int getAtk(){
      return this.atk;
@@ -156,8 +156,8 @@ public class Luchador{
     public String getFaccion(){
     return this.faccion;
     }
-    public void disminuirVida(double daÃ±o){
-    this.vida = this.vida -daÃ±o;
+    public void disminuirVida(double daño){
+    this.vida = this.vida -daño;
     }
     
     

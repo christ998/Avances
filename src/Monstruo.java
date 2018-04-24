@@ -91,7 +91,7 @@ public String elegirFaccion(String[]faccion){
      System.out.println("Tiene una mejora total de: "+array.get(0).getMejora());
      System.out.println("-------------------------------------------");
  }
- public void disminuirVida(double daÃ±o){
- this.hp = this.hp - daÃ±o;
+ public void disminuirVida(double daño){
+ this.hp = this.hp - daño;
  }
 }

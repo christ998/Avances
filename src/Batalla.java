@@ -9,7 +9,7 @@ public class Batalla {
     public Batalla(){
      asignarMonstruo();
      asignarPeleadores();
-       
+     ordenVelocidad();  
      mostrarPeleadores();
      pelea();
      
@@ -21,13 +21,13 @@ public class Batalla {
      System.out.println("Eliga la cantidad de luchadores que van a la batalla "); 
      int cant = leer.nextInt();
        
-     System.out.println("Nombre"+"\t\t"+"FacciÃ³n"+"\t\t"+"Rango");
+     System.out.println("Nombre"+"\t\t"+"Facción"+"\t\t"+"Rango");
      System.out.println("---------------------------------------------");
        for(int i=0; i < InventarioLuchador.inventario.size(); i++){
         System.out.print(i+1);
         InventarioLuchador.inventario.get(i).mostrarLuchador();
        }
-     System.out.println("Elija los "+cant+" luchadores (debe ingresar la posiciÃ³n)");
+     System.out.println("Elija los "+cant+" luchadores (debe ingresar la posición)");
          
      for(int i=0; i < cant; i++){
      int pos = leer.nextInt();
@@ -53,19 +53,21 @@ public class Batalla {
     
     public void ordenVelocidad(){
       ArrayList <Luchador> aux = new ArrayList<>(1);  
-     for(int i=0; i < peleadores.size();i++){
+     for(int i=0; i < (peleadores.size()-1);i++){
        for(int j=i+1; j < peleadores.size();j++){
         if(peleadores.get(i).getVel() < peleadores.get(j).getVel()){
          aux.add(0,peleadores.get(i));
          peleadores.add(i,peleadores.get(j));
+         peleadores.remove(i+1);
          peleadores.add(j,aux.get(0));
+         peleadores.remove(j+1);
          }
       }  
      }
-    } //Este mÃ©todo ordena el Array de peleadores que van a pelear segun sus velocidades, de mayor a menor
+    } //Este método ordena el Array de peleadores que van a pelear segun sus velocidades, de mayor a menor
     
     public void mostrarPeleadores(){
-    System.out.println("Nombre"+"\t\t"+"FacciÃ³n"+"\t\t"+"Rango"+"\t\t"+"Velocidad");
+    System.out.println("Nombre"+"\t\t"+"Facción"+"\t\t"+"Rango"+"\t\t"+"Velocidad");
     System.out.println("--------------------------------------------------");
       for(int i=0; i < peleadores.size(); i++){
        System.out.print(i+1);
@@ -75,35 +77,35 @@ public class Batalla {
        
     public void ataqueJugador(int i){
     double ataq = peleadores.get(i).getAtk();
-    double daÃ±o;
+    double daño;
      if((peleadores.get(i).getFaccion().equals("Agua")&& monstruos.get(0).getFaccion().equals("Fuego"))|| (peleadores.get(i).getFaccion().equals("Fuego")) && monstruos.get(0).getFaccion().equals("Planta")){
-      daÃ±o = ataq*1.5;   
+      daño = ataq*1.5;   
      }else{
      if(peleadores.get(i).getFaccion().equals("Planta")&& monstruos.get(0).getFaccion().equals("Agua")){
-     daÃ±o = ataq*1.5;
+     daño = ataq*1.5;
      }else{
-      daÃ±o=ataq*0.75;
+      daño=ataq*0.75;
       }
      }
                             
      if(this.dif > 0){
-     daÃ±o = (ataq-monstruos.get(0).getDef())*getDado();
-      if(daÃ±o < 0){
-       daÃ±o = 0;
+     daño = (ataq-monstruos.get(0).getDef())*getDado();
+      if(daño < 0){
+       daño = 0;
       }
      }else{
-      daÃ±o = daÃ±o-monstruos.get(0).getDef();
-        if(daÃ±o < 0){
-        daÃ±o = 0;
+      daño = daño-monstruos.get(0).getDef();
+        if(daño < 0){
+        daño = 0;
         }
      }
-     monstruos.get(0).disminuirVida(daÃ±o);//El metodo disminuir vida esta en la clase Monstruo
+     monstruos.get(0).disminuirVida(daño);//El metodo disminuir vida esta en la clase Monstruo
     }
      
     
     public void ataqueMonstruo(int i){
     double ataq = monstruos.get(0).getAtk();
-    double daÃ±o;
+    double daño;
     if((monstruos.get(0).getFaccion().equals("Agua")&& peleadores.get(i).getFaccion().equals("Fuego"))|| (monstruos.get(0).getFaccion().equals("Fuego")) && peleadores.get(i).getFaccion().equals("Planta")){
       ataq = ataq*1.5;   
      }else{
@@ -115,17 +117,17 @@ public class Batalla {
      }
      
      if(this.dif < 0){
-     daÃ±o = (ataq-peleadores.get(i).getDefensa())*getDado();
-        if(daÃ±o < 0){
-        daÃ±o = 0;
+     daño = (ataq-peleadores.get(i).getDefensa())*getDado();
+        if(daño < 0){
+        daño = 0;
         }
      }else{
-     daÃ±o = ataq-peleadores.get(i).getDefensa();
-      if(daÃ±o < 0){
-       daÃ±o = 0;
+     daño = ataq-peleadores.get(i).getDefensa();
+      if(daño < 0){
+       daño = 0;
       }
     }
-     peleadores.get(i).disminuirVida(daÃ±o);//El metodo disminuir vida esta en la clase Luchador
+     peleadores.get(i).disminuirVida(daño);//El metodo disminuir vida esta en la clase Luchador
     }
     
     public void pelea(){
