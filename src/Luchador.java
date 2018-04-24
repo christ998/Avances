@@ -104,7 +104,7 @@ public class Luchador{
      return faccion;
     }
     public String elegirFaccion(String[]faccion){
-     int i = (int)(Math.random()*2);
+     int i = (int)(Math.random()*3);
      String tipo = faccion[i];
      return tipo;
     }
