@@ -5,18 +5,21 @@ import java.util.Scanner;
 public class InventarioObjeto {
 static ArrayList <ObjetoEquipable> inventarioObjetos = new ArrayList <>();
 
-public InventarioObjeto(){
+ public InventarioObjeto(int cant){
+ agregarObjeto(cant);
+ }
 
-}
-
-public void agregarObjeto(){
+public void agregarObjeto(int cant){
+	for(int i=0; i < cant;i++) {
     if(inventarioObjetos.size() == 25){ 
-    System.out.println("Ha alcanzado el mÃ¡ximo de objetos equipables");
+    System.out.println("Ha alcanzado el máximo de objetos equipables");
     }else{
     inventarioObjetos.add(new ObjetoEquipable());
-    System.out.println("Objeto creado");
+    
     }
    }
+	System.out.println("Objetos creados");
+}
         
 public void quitarObjeto(){
     int c = 1;

@@ -13,7 +13,7 @@ public class Monstruo {
   public Monstruo(){
   crearMonstruo();
   crearObjetoDropeable();
-  } // El constructor se encargar√° de crear los monstruos (objetos de la clase Monstruo) con sus respectivos atributos
+  } // El constructor se encargar· de crear los monstruos (objetos de la clase Monstruo) con sus respectivos atributos
   
  private void setHp(){
  this.hp = (int)(Math.random()*500+3500);

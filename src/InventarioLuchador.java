@@ -5,7 +5,8 @@ import java.util.Scanner;
   static ArrayList <Luchador> inventario = new ArrayList <>();
 
 
-   InventarioLuchador(){
+   InventarioLuchador(int cant){
+	 agregarLuchador(cant) ; 
    }
     
    /*public static void main(String [] args){
@@ -13,27 +14,32 @@ import java.util.Scanner;
    agregarLuchador();
    }*/
 
-    public void agregarLuchador(){
-    if(inventario.size() == 25){
-    System.out.println("Ha alcanzado el mÃ¡ximo de luchadores");
-    }else{
-    inventario.add(new Luchador());
-    System.out.println("Luchador creado");
+    public void agregarLuchador(int cant){
+    if(inventario.size()+cant <= 25) {	
+    for(int i=0; i< cant; i++) {
+     inventario.add(new Luchador());
     }
-    
+    System.out.println("Luchadores creados");
+    }else {
+    	System.out.println("No puede agregar esa cantidad de luchadores, puede agregar hasta: "+(25-inventario.size()));
     }
+   }
         
-    public void quitarLuchador(){
+    public void quitarLuchador(int cant){
     Scanner sc = new Scanner (System.in);
-    System.out.println("Eliga el luchador a quitar");
-    int pos = sc.nextInt();
-    inventario.remove(pos);
-    System.out.println("Luchador eliminado");
+    mostrarInventario();
+    int pos;
+    for(int i=0; i < cant; i++) {
+    	System.out.println("Elija posición a quitar");
+    	pos = sc.nextInt();
+    	inventario.remove(pos);
+    	System.out.println("Luchador eliminado");
+    }
     }
     
     public void filtroFaccion(String faccion){ 
     
-    System.out.println("FacciÃ³n: "+faccion);
+    System.out.println("Facción: "+faccion);
     System.out.println("---------------------------");
     int cont = 1;
         
@@ -61,7 +67,7 @@ import java.util.Scanner;
     }
 
     public static void mostrarInventario(){
-    System.out.println("Nombre"+"\t\t"+"FacciÃ³n"+"\t\t"+"Rango");
+    System.out.println("Nombre"+"\t\t"+"Facción"+"\t\t"+"Rango");
     System.out.println("---------------------------------------------");
     for(int i=0; i < inventario.size(); i++){
      System.out.print(i+1);
@@ -69,7 +75,7 @@ import java.util.Scanner;
     }
     }
     public void mostrarTodoUnLuchador(int i){
-        System.out.println("Nombre"+"\t\t"+"FacciÃ³n"+"\t\t"+"Rango"+"\t\t"+"Ataque"+"\t\t"+"Defensa"+"\t\t"+"Vida"+"\t\t"+"Velocidad");
+        System.out.println("Nombre"+"\t\t"+"Facción"+"\t\t"+"Rango"+"\t\t"+"Ataque"+"\t\t"+"Defensa"+"\t\t"+"Vida"+"\t\t"+"Velocidad");
         System.out.println("--------------------------------------------------------------------------------------");
         String msj="";
         msj= inventario.get(i).nombre;
@@ -83,8 +89,8 @@ import java.util.Scanner;
         
     }
     
-    public void cantidadLuchadores(ArrayList<Luchador> inventario){
-      System.out.println("Hay "+this.inventario.size()+" luchadores");
+    public void cantidadLuchadores(){
+      System.out.println("Hay "+inventario.size()+" luchadores");
     }
     public ArrayList getArray(){
      return inventario;

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,9 +10,8 @@ public class Luchador{
      int vel;
      int rango;
      String nombre;
-     String nombreArma;
      String faccion;
-    
+     ArrayList <ObjetoEquipable> arma = new ArrayList<>(1);
     Luchador(){
      atk();
      defensa();
@@ -24,7 +24,6 @@ public class Luchador{
      this.vida = getVida()*this.rango;
      this.nombre = elegirNombre(nombres());
      this.faccion = elegirFaccion(faccion());
-     this.nombreArma = "No posee armas";
      }
             
     public void mostrarLuchador(){
@@ -59,6 +58,7 @@ public class Luchador{
      return name;
     }
     public void equiparArma(){
+    if(arma.isEmpty() == true) {	
     Scanner leer = new Scanner(System.in);
     int pos = 1;    
     for(int i = 0; i < InventarioObjeto.inventarioObjetos.size();i++){
@@ -68,34 +68,37 @@ public class Luchador{
      System.out.println("-------------------------------------------");
      pos++;
     }
-    System.out.println("Elija el arma a equipar ");
+     System.out.println("Elija el arma a equipar ");
      int num = leer.nextInt();
-     
-     if(InventarioObjeto.inventarioObjetos.get(num-1).getCarac().equals("Ataque")){
-     this.atk = this.atk + InventarioObjeto.inventarioObjetos.get(num-1).getMejora();
+     arma.add(InventarioObjeto.inventarioObjetos.get(num-1));
+     if(arma.get(0).getCarac().equals("Ataque")){
+     this.atk = this.atk + arma.get(0).getMejora();
      InventarioObjeto.inventarioObjetos.remove(num-1);
      System.out.println("Ataque mejorado");
      }  
      
-     if(InventarioObjeto.inventarioObjetos.get(num-1).getCarac().equals("Defensa")){
-     this.def = this.def + InventarioObjeto.inventarioObjetos.get(num-1).getMejora();
+     if(arma.get(0).getCarac().equals("Defensa")){
+     this.def = this.def + arma.get(0).getMejora();
      InventarioObjeto.inventarioObjetos.remove(num-1);
      System.out.println("Defensa mejorada");
      }
      
-     if(InventarioObjeto.inventarioObjetos.get(num-1).getCarac().equals("Vida")){
-     this.vida = this.vida +InventarioObjeto.inventarioObjetos.get(num-1).getMejora();
+     if(arma.get(0).getCarac().equals("Vida")){
+     this.vida = this.vida +arma.get(0).getMejora();
      InventarioObjeto.inventarioObjetos.remove(num-1);
      System.out.println("Vida mejorada");
      }
      
-     if(InventarioObjeto.inventarioObjetos.get(num-1).getCarac().equals("Velocidad")){
-     this.vel = this.vel + InventarioObjeto.inventarioObjetos.get(num-1).getMejora();
+     if(arma.get(0).getCarac().equals("Velocidad")){
+     this.vel = this.vel + arma.get(0).getMejora();
      InventarioObjeto.inventarioObjetos.remove(num-1);
      System.out.println("Velocidad mejorada");
      }
+    }else {
+    	System.out.println("Ya tiene un arma equipada");
     }
-    
+    }
+
     public String[] faccion(){
      String [] faccion = new String[3];
      faccion[0]="Agua";

@@ -7,16 +7,20 @@ public class Batalla {
     
         
     public Batalla(){
-     asignarMonstruo();
      asignarPeleadores();
-     ordenVelocidad();  
-     mostrarPeleadores();
-     pelea();
-     
-     
+     asignarMonstruo();
+     ordenVelocidad();
     }
    
-    public void asignarPeleadores(){
+    public ArrayList<Luchador> getPeleadores() {
+		return peleadores;
+	}
+
+	public ArrayList<Monstruo> getMonstruos() {
+		return monstruos;
+	}
+
+	 public void asignarPeleadores(){
      Scanner leer = new Scanner(System.in); 
      System.out.println("Eliga la cantidad de luchadores que van a la batalla "); 
      int cant = leer.nextInt();
